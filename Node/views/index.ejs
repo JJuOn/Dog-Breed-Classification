@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta lang="ko">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div class='container p-3 border text-center'>
+        <h2>Dog Breed Classifier</h2>
+        <p>Kaggle Stanford Dogs Datasets으로 Inception_v3 Model을 학습시켰습니다.</p>
+        <p>정확도: 78.09%</p>
+        <h2>테스트</h2>
+        <form action="/api/upload" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="file" class="form-control-file" name="image" required>
+            </div>
+            <div class="form-group form-submit">
+                <input type="submit" class="form-control btn btn-outline-primary" value="제출">  
+            </div>
+        </form>
+        <h2>견종 목록(120종)</h2>
+        <table class="table table-bordered" style="table-layout: fixed; word-break: break-all;">
+            <% for(let i=0;i<classes.length;i+=6){%>
+                <tr>
+                    <td class="col"><%=classes[i]%></td>
+                    <td class="col"><%=classes[i+1]%></td>
+                    <td class="col"><%=classes[i+2]%></td>
+                    <td class="col"><%=classes[i+3]%></td>
+                    <td class="col"><%=classes[i+4]%></td>
+                    <td class="col"><%=classes[i+5]%></td>
+                </tr>
+            <%}%>
+        </table>
+    </div>
+    <script src="/js/bootstrap.min.js"></script>
+</body>

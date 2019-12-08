@@ -1,0 +1,4 @@
+Node/.env
+Node/node_modules/
+Node/uploads/
+Python/__pycache__/
