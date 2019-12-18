@@ -10,10 +10,10 @@
         <h2>Dog Breed Classifier</h2>
         <p>Kaggle Stanford Dogs Datasets으로 Inception_v3 Model을 학습시켰습니다.</p>
         <p>정확도: 78.09%</p>
-        <h2>테스트</h2>
+        <h2>테스트</h2><h5>(.jpg 파일만 지원됩니다)</h5>
         <form action="/api/upload" method="POST" enctype="multipart/form-data">
             <div class="form-group">
-                <input type="file" class="form-control-file" name="image" required>
+                <input type="file" class="form-control-file" name="image" accept=".jpg" required>
             </div>
             <div class="form-group form-submit">
                 <input type="submit" class="form-control btn btn-outline-primary" value="제출">  
@@ -32,6 +32,9 @@
                 </tr>
             <%}%>
         </table>
+        <div class="footer">
+            <a href="https://github.com/JJuOn/Dog-Breed-Classification">GitHub</a>
+        </div>
     </div>
     <script src="/js/bootstrap.min.js"></script>
 </body>

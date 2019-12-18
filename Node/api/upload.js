@@ -1,8 +1,19 @@
 const fs=require('fs');
 const ejs=require('ejs');
+const path=require('path');
 require('dotenv').config();
 const threshold=30;
 const Upload=(req,res)=>{
+    const ExtenstionCheck=()=>{
+        return new Promise((resolve,reject)=>{
+            if(path.extname(req.file.originalname)!==".jpg"){
+                reject({status:false,message:'only .jpg files are allowed',data:[]});
+            }
+            else{
+                resolve();
+            }
+        });
+    }
     const RunPython=()=>{
         return new Promise((resolve,reject)=>{
             const spawn=require('child_process').spawn;
@@ -46,8 +57,12 @@ const Upload=(req,res)=>{
             }));
         });
     }
-    RunPython()
+    ExtenstionCheck()
+    .then(RunPython)
     .then(Render)
+    .catch((err)=>{
+        res.status(500).json(err);
+    });
 }
 
 module.exports=Upload;
