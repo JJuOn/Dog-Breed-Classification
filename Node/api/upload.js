@@ -6,7 +6,8 @@ const threshold=30;
 const Upload=(req,res)=>{
     const ExtenstionCheck=()=>{
         return new Promise((resolve,reject)=>{
-            if(path.extname(req.file.originalname)!==".jpg"){
+            if(path.extname(req.file.originalname)!==".jpg" && path.extname(req.file.originalname)!=='.JPG'){
+                console.log(req.file.originalname);
                 reject({status:false,message:'only .jpg files are allowed',data:[]});
             }
             else{

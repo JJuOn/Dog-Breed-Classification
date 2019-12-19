@@ -20,7 +20,7 @@ model.fc = nn.Sequential(
     nn.ReLU(),
     nn.Dropout(0.4),
     nn.Linear(1024, n_classes),
-    nn.LogSoftmax(dim=1))
+    nn.Softmax(dim=1))
 model.load_state_dict(torch.load('../Python/model.pt')['state_dict'])
 classes=[
     'Chihuahua',
@@ -151,7 +151,6 @@ img=img.resize((299,299))
 ToTensor_trans=transforms.ToTensor()
 Normalize_trans=transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 outputs=model(Normalize_trans(ToTensor_trans(img)).unsqueeze(0).cuda())
-outputs=F.softmax(outputs,dim=1)
 outputs,idx=outputs.unsqueeze(0).topk(2)
 sys.stdout.flush()
 for i,o in zip(idx.tolist()[0][0],outputs.tolist()[0][0]):
